@@ -12,8 +12,9 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./video-table.component.scss']
 })
 export class VideoTableComponent implements OnInit, OnDestroy {
-  videos: Video[] = [];
-  httpSubscription: Subscription;
+  // videos: Video[] = [];
+  videos: Observable<Video[]> ;
+  // httpSubscription: Subscription;
 
   constructor(public service: VideoTableService) { }
 
@@ -22,19 +23,26 @@ export class VideoTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.httpSubscription) {
-      this.httpSubscription.unsubscribe();
-    }
+    // if (this.httpSubscription) {
+    //   this.httpSubscription.unsubscribe();
+    // }
   }
 
   fetchVideos() {
-    this.httpSubscription = this.service.fetchVideos().subscribe(response => {
-      response.items.map(item => {
-        const video = item.snippet;
-        console.log('Video: ', video);
-        this.videos.push(video);
-      });
-    });
+    this.videos = this.service.videos;
   }
+
+  // fetchVideos() {
+  //   this.httpSubscription = this.service.fetchVideos()
+  //     .subscribe(response => {
+  //       response.items.map(item => {
+  //         const video = item.snippet;
+  //         console.log('Video: ', video);
+  //         this.videos.push(video);
+  //     });
+  //   }, error => {
+  //     console.error('Problem fetching videos' , error)
+  //   });
+  // }
 
 }

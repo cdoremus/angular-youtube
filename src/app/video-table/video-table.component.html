@@ -1,5 +1,5 @@
 <div *ngIf="videos">
-  <ul *ngFor="let video of videos">
+  <ul *ngFor="let video of videos | async">
     <li><strong>Title: </strong>{{ video.title }} <br>
         <strong>Description: </strong> {{ video.description }}<br>
         <strong>Thumbnail URL: </strong> {{ video.thumbnails.default.url }}<br>
