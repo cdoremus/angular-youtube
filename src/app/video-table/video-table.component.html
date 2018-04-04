@@ -2,6 +2,7 @@
   <ul *ngFor="let video of videos">
     <li><strong>Title: </strong>{{ video.title }} <br>
         <strong>Description: </strong> {{ video.description }}<br>
+        <strong>Thumbnail URL: </strong> {{ video.thumbnails.default.url }}<br>
         <strong>Date published: </strong> {{ video.publishedAt }}
     </li>
   </ul>

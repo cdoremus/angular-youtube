@@ -31,7 +31,7 @@ export class VideoTableComponent implements OnInit, OnDestroy {
     this.httpSubscription = this.service.fetchVideos().subscribe(response => {
       response.items.map(item => {
         const video = item.snippet;
-        // console.log('Video: ', video);
+        console.log('Video: ', video);
         this.videos.push(video);
       });
     });
