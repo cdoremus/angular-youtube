@@ -5,7 +5,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material.module';
-
+import { HttpClientModule } from '@angular/common/http';
+import { VideoTableModule } from './video-table/video-table.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,9 @@ import { MaterialModule } from './shared/material.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule
+    VideoTableModule,
+    HttpClientModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

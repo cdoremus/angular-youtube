@@ -1,0 +1,177 @@
+{
+ "kind": "youtube#searchListResponse",
+ "etag": "\"RmznBCICv9YtgWaaa_nWDIH1_GM/7hxstrlJwAlbxefOZq1nHoaA44Y\"",
+ "nextPageToken": "CAUQAA",
+ "regionCode": "US",
+ "pageInfo": {
+  "totalResults": 71,
+  "resultsPerPage": 5
+ },
+ "items": [
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"RmznBCICv9YtgWaaa_nWDIH1_GM/XcEpjR1Kfb_2dXZsWoujFIMabJA\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "1CpiB3Wk25U"
+   },
+   "snippet": {
+    "publishedAt": "2012-09-11T20:32:57.000Z",
+    "channelId": "UCbn1OgGei-DV7aSRo_HaAiw",
+    "title": "AngularJS Intro + Dependency Injection (AngularJS Meetup SF 2012-07-17)",
+    "description": "http://www.meetup.com/AngularJS-SF/events/71906542/ 0:00 Intro to AngularJS 13:48 Building a Todo app (Igor Minar) 37:34 Dependency Injection in AngularJS (Vojta Jina)",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/1CpiB3Wk25U/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/1CpiB3Wk25U/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/1CpiB3Wk25U/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "Angular",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"RmznBCICv9YtgWaaa_nWDIH1_GM/7kHdNut-rnze59Yj4bOPWzez2JE\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "ZhfUv0spHCY"
+   },
+   "snippet": {
+    "publishedAt": "2012-12-12T03:50:00.000Z",
+    "channelId": "UCbn1OgGei-DV7aSRo_HaAiw",
+    "title": "AngularJS MTV Meetup: Best Practices (2012/12/11)",
+    "description": "http://www.meetup.com/AngularJS-MTV/events/93943412/ Presentation slides available at: http://goo.gl/CD0Is Live from the Mountain View, CA meetup, Miško Hevery discusses the advantages and...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/ZhfUv0spHCY/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/ZhfUv0spHCY/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/ZhfUv0spHCY/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "Angular",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"RmznBCICv9YtgWaaa_nWDIH1_GM/kfKAe2ttnMfPS15X1lKg7pVAStg\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "rB5b67Cg6bc"
+   },
+   "snippet": {
+    "publishedAt": "2012-11-28T17:12:47.000Z",
+    "channelId": "UCbn1OgGei-DV7aSRo_HaAiw",
+    "title": "Testing Directives",
+    "description": "Learn to write tests for AngularJS directives. Vojta Jina describes techniques for unit testing directives and making tests run fast with the Testacular test runner. Vojta is a member of...",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/rB5b67Cg6bc/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/rB5b67Cg6bc/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/rB5b67Cg6bc/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "Angular",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"RmznBCICv9YtgWaaa_nWDIH1_GM/SIbRZiP8efir52wRX857UW2xFec\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "WqmeI5fZcho"
+   },
+   "snippet": {
+    "publishedAt": "2012-11-28T17:17:34.000Z",
+    "channelId": "UCbn1OgGei-DV7aSRo_HaAiw",
+    "title": "Writing Directives",
+    "description": "Directives explained from top to bottom by their creator! From the Sep 2012 Mountain View meetup, Misko Hevery walks through how directives work in AngularJS.",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/WqmeI5fZcho/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/WqmeI5fZcho/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/WqmeI5fZcho/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "Angular",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"RmznBCICv9YtgWaaa_nWDIH1_GM/fgWEkS4zY80D15EWIkSGA-J_R6I\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "W13qDdJDHp8"
+   },
+   "snippet": {
+    "publishedAt": "2013-06-12T03:51:47.000Z",
+    "channelId": "UCbn1OgGei-DV7aSRo_HaAiw",
+    "title": "AngularJS 1.2 and Beyond",
+    "description": "Angular 1.2 has been long in making, but it's finally here! Join us to learn what's new and noteworthy in this feature-packed release as well as what's next for Angular after 1.2.",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/W13qDdJDHp8/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/W13qDdJDHp8/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/W13qDdJDHp8/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "Angular",
+    "liveBroadcastContent": "none"
+   }
+  }
+ ]
+}
