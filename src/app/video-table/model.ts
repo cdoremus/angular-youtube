@@ -6,7 +6,8 @@ interface VideoThumbnail {
 }
 
 export interface Video {
-  thumbnails: VideoThumbnail;
+  videoId?: string;
+  thumbnails: VideoThumbnailData;
   title: string;
   description: string;
   publishedAt: Date;
@@ -21,9 +22,11 @@ export interface VideoThumbnailData {
 export interface YouTubeApiResponse {
   nextPageToken: string;
   prevPageToken?: string;
+  pageInfo: {resultsPerPage: string, totalResults: string};
   items: YouTubeApiResponseItem[];
 }
 
 export interface YouTubeApiResponseItem {
+  id: {kind: string, videoId: string};
   snippet: Video;
 }

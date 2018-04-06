@@ -38,8 +38,8 @@
     </mat-table>
 
     <mat-paginator
-      [length]="71"
-      [pageSize]="10"
+      [length]="dataSource.totalResults"
+      [pageSize]="dataSource.resultsPerPage"
       (page)="onPageChange($event)">
     </mat-paginator>
   </mat-card>

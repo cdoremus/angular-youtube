@@ -30,7 +30,6 @@ export class VideoTableService {
       .set('channelId', YOU_TUBE_CHANNEL_ID)
       .set('key', secrets.apikey);
       if (pageToken) {
-        // returned by previous page's response
         params = params.set('pageToken', pageToken);
       }
     return this.http.get(YOU_TUBE_API_URL, { params }) as Observable<YouTubeApiResponse>;

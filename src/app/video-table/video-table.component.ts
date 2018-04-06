@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { MatPaginator } from '@angular/material/paginator';
 
 import { VideoTableService } from './video-table.service';
-import { VideoTableDataSource } from './video-table.datasource';
+import { VideoTableDataSource, PaginationDirection } from './video-table.datasource';
 import { Subscription } from 'rxjs/Subscription';
 import { tap } from 'rxjs/operators';
 
@@ -23,6 +23,8 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   displayedColumns = ['thumbnail', 'title', 'description', 'publishedAt'];
 
+  pageIndex = 0;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   // @ViewChild(MatTable) dataTable: MatTable<Video>;
 
@@ -31,25 +33,28 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit() {
     // this.fetchVideos();
     this.dataSource = new VideoTableDataSource(this.service);
-    this.dataSource.fetchVideos();
+    this.dataSource.fetchVideos(PaginationDirection.NONE);
   }
 
   ngAfterViewInit() {
-    // this.dataSource.paginator = this.paginator;
-    // this.dataTable.viewChange.subscribe(data => {
-    //   console.log('Start: ', data.start);
-    //   console.log('End: ', data.end);
-    // });
 
     console.log('Paginator: ', this.paginator);
     this.httpSubscription = this.paginator.page
       .pipe(
-        tap(() => this.fetchVideosPage())
+        tap((event) => {
+          console.log('Paginator.page event: ', event);
+          return this.fetchVideosPage();
+        })
       ).subscribe();
   }
 
   fetchVideosPage() {
-    this.dataSource.fetchVideos();
+    const index = this.paginator.pageIndex;
+    const pagingDirection: PaginationDirection =
+      index >= this.pageIndex ? PaginationDirection.NEXT : PaginationDirection.PREV;
+    console.log('Paging Direction: ', pagingDirection) ;
+    this.dataSource.fetchVideos(pagingDirection);
+    this.pageIndex = index;
   }
 
   ngOnDestroy() {
@@ -59,7 +64,7 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onPageChange(event) {
-    console.log('onPageChange() called', event);
+    // console.log('onPageChange() called', event);
   }
 
   // fetchVideos() {
