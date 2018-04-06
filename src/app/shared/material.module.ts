@@ -16,7 +16,6 @@ import {
     MatListModule,
     MatMenuModule,
     MatNativeDateModule,
-    MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatRadioModule,
@@ -28,11 +27,13 @@ import {
     MatSnackBarModule,
     MatSortModule,
     MatStepperModule,
-    MatTableModule,
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule
 } from '@angular/material';
+
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { CdkTableModule } from '@angular/cdk/table';
 

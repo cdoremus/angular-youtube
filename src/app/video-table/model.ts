@@ -19,6 +19,8 @@ export interface VideoThumbnailData {
 }
 
 export interface YouTubeApiResponse {
+  nextPageToken: string;
+  prevPageToken?: string;
   items: YouTubeApiResponseItem[];
 }
 

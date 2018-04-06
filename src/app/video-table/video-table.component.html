@@ -1,4 +1,4 @@
-<div *ngIf="videos">
+<!-- <div *ngIf="videos">
   <ul *ngFor="let video of videos | async">
     <li><strong>Title: </strong>{{ video.title }} <br>
         <strong>Description: </strong> {{ video.description }}<br>
@@ -6,4 +6,42 @@
         <strong>Date published: </strong> {{ video.publishedAt }}
     </li>
   </ul>
+</div> -->
+
+<div>
+  <mat-card>
+    <mat-table #table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="thumbnail">
+        <mat-header-cell *matHeaderCellDef> Thumbnail </mat-header-cell>
+        <mat-cell *matCellDef="let video"> <img mat-card-sm-image src="{{ video.thumbnails.default.url }}" width="{{ video.thumbnails.default.width }}" height="{{ video.thumbnails.default.height }}"> </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+        <mat-cell *matCellDef="let video"> <mat-card>{{ video.title }} </mat-card></mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+        <mat-cell *matCellDef="let video"> <mat-card>{{ video.description.substring(0, 150) }}...</mat-card> </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="publishedAt">
+        <mat-header-cell *matHeaderCellDef> Date Published </mat-header-cell>
+        <mat-cell *matCellDef="let video"> <mat-card>{{ video.publishedAt | date:'mm/dd/yyyy'}} </mat-card></mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+
+    <mat-paginator
+      [length]="71"
+      [pageSize]="10"
+      (page)="onPageChange($event)">
+    </mat-paginator>
+  </mat-card>
+
 </div>
