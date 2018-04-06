@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
+import { Subscription } from 'rxjs/Subscription';
 
 export enum PaginationDirection {
   NEXT = 'NEXT',
@@ -15,7 +16,8 @@ export enum PaginationDirection {
 export class VideoTableDataSource implements DataSource<Video> {
 
   private videosSubject = new BehaviorSubject<Video[]>([]);
-  private fetchingSubject = new BehaviorSubject<boolean>(false);
+  private loadingSubject = new BehaviorSubject<boolean>(false);
+  private videoFetchSubscription: Subscription;
   nextPageToken = '';
   prevPageToken = '';
   resultsPerPage = '10';
@@ -28,18 +30,20 @@ export class VideoTableDataSource implements DataSource<Video> {
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
+    if (this.videoFetchSubscription) {
+      this.videoFetchSubscription.unsubscribe();
+    }
     this.videosSubject.complete();
-    this.fetchingSubject.complete();
+    this.loadingSubject.complete();
   }
 
   fetchVideos(paginationDirection: PaginationDirection) {
-    this.fetchingSubject.next(true);
+    this.loadingSubject.next(true);
     const pageToken: string = paginationDirection === PaginationDirection.NEXT ? this.nextPageToken : this.prevPageToken;
-    console.log('pageToken: ', pageToken);
-    this.service.fetchVideos(pageToken)
+    this.videoFetchSubscription = this.service.fetchVideos(pageToken)
       .pipe(
         catchError(() => of([])), // TODO: send message to UI
-        finalize(() => this.fetchingSubject.next(false))
+        finalize(() => this.loadingSubject.next(false))
       )
       .subscribe((response: YouTubeApiResponse) => {
         this.nextPageToken = response.nextPageToken;
@@ -48,10 +52,10 @@ export class VideoTableDataSource implements DataSource<Video> {
         this.resultsPerPage = response.pageInfo.resultsPerPage;
         const videos: Video[] = response.items.map(item => {
           const video: Video =  item.snippet;
+          // videoId used to fetch video
           video.videoId = item.id.videoId;
           return video;
         });
-        console.log('Videos: ', videos);
         return this.videosSubject.next(videos);
       }, error => console.error('Probem fetching videos from data source', error)
     );

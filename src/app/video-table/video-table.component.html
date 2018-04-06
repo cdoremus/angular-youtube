@@ -1,14 +1,4 @@
-<!-- <div *ngIf="videos">
-  <ul *ngFor="let video of videos | async">
-    <li><strong>Title: </strong>{{ video.title }} <br>
-        <strong>Description: </strong> {{ video.description }}<br>
-        <strong>Thumbnail URL: </strong> {{ video.thumbnails.default.url }}<br>
-        <strong>Date published: </strong> {{ video.publishedAt }}
-    </li>
-  </ul>
-</div> -->
-
-<div>
+<div class="data-table-container">
   <mat-card>
     <mat-table #table [dataSource]="dataSource" matSort>
 
@@ -39,8 +29,7 @@
 
     <mat-paginator
       [length]="dataSource.totalResults"
-      [pageSize]="dataSource.resultsPerPage"
-      (page)="onPageChange($event)">
+      [pageSize]="dataSource.resultsPerPage">
     </mat-paginator>
   </mat-card>
 

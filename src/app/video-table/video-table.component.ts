@@ -52,7 +52,6 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
     const index = this.paginator.pageIndex;
     const pagingDirection: PaginationDirection =
       index >= this.pageIndex ? PaginationDirection.NEXT : PaginationDirection.PREV;
-    console.log('Paging Direction: ', pagingDirection) ;
     this.dataSource.fetchVideos(pagingDirection);
     this.pageIndex = index;
   }
@@ -62,16 +61,5 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
       this.httpSubscription.unsubscribe();
     }
   }
-
-  onPageChange(event) {
-    // console.log('onPageChange() called', event);
-  }
-
-  // fetchVideos() {
-  //   this.videos = this.service.getVideos();
-  //   // this.service.videos.subscribe(videos => {
-  //   //   this.videos = videos;
-  //   // });
-  // }
 
 }
