@@ -40,11 +40,11 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
 
-    console.log('Paginator: ', this.paginator);
+    // console.log('Paginator: ', this.paginator);
     this.httpSubscription = this.paginator.page
       .pipe(
         tap((event) => {
-          console.log('Paginator.page event: ', event);
+          // console.log('Paginator.page event: ', event);
           return this.fetchVideosPage();
         })
       ).subscribe();
