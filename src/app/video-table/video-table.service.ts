@@ -8,8 +8,8 @@ import { YouTubeApiResponse } from './model';
 // const secrets = require('../../secrets.json');
 const secrets = { apikey: 'AIzaSyCImn7DsUikapPFYDE4OrI5GP1heXIS8ns'};
 
-const YOU_TUBE_CHANNEL_ID = 'UCbn1OgGei-DV7aSRo_HaAiw';
-const YOU_TUBE_API_URL = 'https://www.googleapis.com/youtube/v3/search';
+export const YOU_TUBE_CHANNEL_ID = 'UCbn1OgGei-DV7aSRo_HaAiw';
+export const YOU_TUBE_API_URL = 'https://www.googleapis.com/youtube/v3/search';
 
 @Injectable()
 export class VideoTableService {
