@@ -23,7 +23,7 @@ export class VideoTableDataSource implements DataSource<Video> {
   resultsPerPage = '10';
   totalResults = '0';
 
-  constructor(private service: VideoTableService) {}
+  constructor(public service: VideoTableService) {}
 
   connect(collectionViewer: CollectionViewer): Observable<Video[]> {
     return this.videosSubject.asObservable();

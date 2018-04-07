@@ -15,8 +15,6 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./video-table.component.scss']
 })
 export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
-  // videos: Video[] = [];
-  // videos: Observable<Video[]>;
   httpSubscription: Subscription;
 
   dataSource: VideoTableDataSource;
@@ -26,13 +24,17 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
   pageIndex = 0;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  // @ViewChild(MatTable) dataTable: MatTable<Video>;
 
-  constructor(public service: VideoTableService) { }
+  constructor(public service: VideoTableService, dataSource?: VideoTableDataSource) {
+    if (dataSource) {
+      this.dataSource = dataSource;
+    }
+   }
 
   ngOnInit() {
-    // this.fetchVideos();
-    this.dataSource = new VideoTableDataSource(this.service);
+    if (!this.dataSource) {
+      this.dataSource = new VideoTableDataSource(this.service);
+    }
     this.dataSource.fetchVideos(PaginationDirection.NONE);
   }
 
