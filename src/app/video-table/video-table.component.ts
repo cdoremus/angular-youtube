@@ -54,7 +54,7 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
     const index = this.paginator.pageIndex;
     const pagingDirection: PaginationDirection =
       index >= this.pageIndex ? PaginationDirection.NEXT : PaginationDirection.PREV;
-    this.dataSource.fetchVideos(pagingDirection);
+    this.dataSource.fetchVideos(pagingDirection, index);
     this.pageIndex = index;
   }
 

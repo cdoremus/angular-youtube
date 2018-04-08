@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpErrorHandlerService } from '../shared/http-error-handler.service';
 import { YouTubeApiResponse } from './model';
+import { PagedVideoDataCacheService } from './paged-videodata-cache.service';
 
 // Gets API key from secrets.json
 // const secrets = require('../../secrets.json');
@@ -14,9 +15,9 @@ export const YOU_TUBE_API_URL = 'https://www.googleapis.com/youtube/v3/search';
 @Injectable()
 export class VideoTableService {
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, private cache: PagedVideoDataCacheService) { }
 
-  fetchVideos(pageToken: string = ''): Observable<YouTubeApiResponse> {
+  fetchVideos(pageToken: string = '', pageIndex?: number): Observable<YouTubeApiResponse> {
     let params =
       new HttpParams()
       .set('part', 'snippet')

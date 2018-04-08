@@ -39,7 +39,7 @@ export class VideoTableDataSource implements DataSource<Video> {
     this.loadingSubject.complete();
   }
 
-  fetchVideos(paginationDirection: PaginationDirection) {
+  fetchVideos(paginationDirection: PaginationDirection, pageIndex?: number) {
     this.loadingSubject.next(true);
     const pageToken: string = paginationDirection === PaginationDirection.NEXT ? this.nextPageToken : this.prevPageToken;
     this.videoFetchSubscription = this.service.fetchVideos(pageToken)
