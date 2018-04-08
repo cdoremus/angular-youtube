@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import { YouTubeApiResponse } from './model';
 
 // 1000 milis/min * 60 min/hr * 24 hr/day
@@ -15,11 +15,11 @@ export class PagedVideoDataCacheService {
 
   cache: Map<number, CacheItem> = new Map<number, CacheItem>();
 
-  constructor(private now?: number) {
+  constructor(@Optional() private now?: number) {
     if (!now) {
       this.now = new Date().getTime();
     }
-   }
+  }
 
   add(pageIndex: number, pageData: YouTubeApiResponse) {
     this.cache.set(pageIndex, {data: pageData, timestamp: new Date().getTime()});
