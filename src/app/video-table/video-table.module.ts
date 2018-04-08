@@ -4,6 +4,7 @@ import { VideoTableComponent } from './video-table.component';
 import { VideoTableService } from './video-table.service';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../shared/material.module';
+import { VideoTableDataSource } from './video-table.datasource';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { MaterialModule } from '../shared/material.module';
     VideoTableComponent
   ],
   providers: [
+    VideoTableDataSource,
     VideoTableService
   ],
   exports: [

@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { Subscription } from 'rxjs/Subscription';
+import { Injectable } from '@angular/core';
 
 export enum PaginationDirection {
   NEXT = 'NEXT',
@@ -13,6 +14,7 @@ export enum PaginationDirection {
   NONE = 'NONE'
 }
 
+@Injectable()
 export class VideoTableDataSource implements DataSource<Video> {
 
   private videosSubject = new BehaviorSubject<Video[]>([]);
