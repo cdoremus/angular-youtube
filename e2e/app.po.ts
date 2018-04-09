@@ -1,6 +1,6 @@
 import { browser, by, element } from 'protractor';
 
-export enum NavigationDirection {
+enum NavigationDirection {
   NEXT = 'next',
   PREVIOUS = 'previous'
 }
@@ -11,7 +11,7 @@ export class AppPage {
   }
 
   getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+    return element(by.css('div.header-container .mat-card-title')).getText();
   }
 
   getTableRows() {

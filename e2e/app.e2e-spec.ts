@@ -1,15 +1,15 @@
 import { AppPage } from './app.po';
 
-describe('angular-youtube App', () => {
+describe('Home page', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display page header title', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getParagraphText()).toEqual('YouTube Angular Channel');
   });
 
   it('should display 10 rows in data table', () => {
