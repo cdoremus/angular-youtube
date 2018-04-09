@@ -13,18 +13,24 @@ import { VideoTableDataSource, PaginationDirection } from './video-table.datasou
   styleUrls: ['./video-table.component.scss']
 })
 export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
-  httpSubscription: Subscription;
-
+  // data table column identifiers
   displayedColumns = ['thumbnail', 'title', 'description', 'publishedAt'];
-
   pageIndex = 0;
+  httpSubscription: Subscription;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(public service: VideoTableService, private dataSource: VideoTableDataSource) {}
+  constructor(public service: VideoTableService, public dataSource: VideoTableDataSource) {}
 
   ngOnInit() {
     this.dataSource.fetchVideos(PaginationDirection.NONE);
+  }
+
+  ngOnDestroy() {
+    if (this.httpSubscription) {
+      this.httpSubscription.unsubscribe();
+    }
+    this.dataSource.disconnect(null);
   }
 
   ngAfterViewInit() {
@@ -42,12 +48,6 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
       index >= this.pageIndex ? PaginationDirection.NEXT : PaginationDirection.PREV;
     this.dataSource.fetchVideos(pagingDirection, index);
     this.pageIndex = index;
-  }
-
-  ngOnDestroy() {
-    if (this.httpSubscription) {
-      this.httpSubscription.unsubscribe();
-    }
   }
 
 }

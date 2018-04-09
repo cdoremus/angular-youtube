@@ -19,7 +19,7 @@
 
       <ng-container matColumnDef="publishedAt">
         <mat-header-cell *matHeaderCellDef> Date Published </mat-header-cell>
-        <mat-cell *matCellDef="let video"> <mat-card>{{ video.publishedAt | date:'mm/dd/yyyy'}} </mat-card></mat-cell>
+        <mat-cell *matCellDef="let video"> <mat-card>{{ video.publishedAt }} </mat-card></mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
