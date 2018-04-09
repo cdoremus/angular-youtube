@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpErrorHandlerService } from './http-error-handler.service';
+import { ErrorHandlerService } from './error-handler.service';
 
 @NgModule({
   imports: [
@@ -8,7 +8,7 @@ import { HttpErrorHandlerService } from './http-error-handler.service';
   ],
   declarations: [],
   providers: [
-    HttpErrorHandlerService
+    ErrorHandlerService
   ]
 })
 export class SharedModule { }

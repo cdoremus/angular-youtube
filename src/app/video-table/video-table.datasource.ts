@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { Subscription } from 'rxjs/Subscription';
 import { Injectable } from '@angular/core';
 
@@ -44,10 +45,13 @@ export class VideoTableDataSource implements DataSource<Video> {
     const pageToken: string = paginationDirection === PaginationDirection.NEXT ? this.nextPageToken : this.prevPageToken;
     this.videoFetchSubscription = this.service.fetchVideos(pageToken)
       .pipe(
-        catchError(() => of([])), // TODO: send message to UI
+        catchError((error) => {
+          return ErrorObservable.create(error);
+        }),
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe((response: YouTubeApiResponse) => {
+        console.log('API Response', response);
         this.nextPageToken = response.nextPageToken;
         this.prevPageToken = response.prevPageToken;
         this.totalResults = response.pageInfo.totalResults;
@@ -59,7 +63,10 @@ export class VideoTableDataSource implements DataSource<Video> {
           return video;
         });
         return this.videosSubject.next(videos);
-      }, error => console.error('Probem fetching videos from data source', error)
+      }, error => {
+        console.error('Problem fetching videos from data source (VideoTableDataSource#fetchVideos)', error);
+        throw error;
+      }
     );
   }
 
