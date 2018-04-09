@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { HttpErrorHandlerService } from '../shared/http-error-handler.service';
 import { YouTubeApiResponse } from './model';
 import { PagedVideoDataCacheService } from './paged-videodata-cache.service';
 
