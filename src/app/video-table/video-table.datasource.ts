@@ -60,6 +60,13 @@ export class VideoTableDataSource implements DataSource<Video> {
           const video: Video =  item.snippet;
           // videoId used to fetch video
           video.videoId = item.id.videoId;
+          // format date/time as date only
+          const dateString = video.publishedAt;
+          const timeSeparator = 'T'; // separates date from time part
+          if (dateString.includes(timeSeparator)) {
+            const date = dateString.substring(0, dateString.indexOf(timeSeparator));
+            video.publishedAt = date;
+          }
           return video;
         });
         return this.videosSubject.next(videos);

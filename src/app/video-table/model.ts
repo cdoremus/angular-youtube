@@ -10,7 +10,7 @@ export interface Video {
   thumbnails: VideoThumbnailData;
   title: string;
   description: string;
-  publishedAt: Date;
+  publishedAt: string;
 }
 
 export interface VideoThumbnailData {
