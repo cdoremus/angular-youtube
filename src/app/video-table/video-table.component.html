@@ -1,4 +1,7 @@
 <div class="data-table-container">
+  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
   <mat-card>
     <mat-table #table [dataSource]="dataSource" matSort>
 

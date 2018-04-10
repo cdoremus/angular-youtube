@@ -18,9 +18,10 @@ export enum PaginationDirection {
 @Injectable()
 export class VideoTableDataSource implements DataSource<Video> {
 
+  private videoFetchSubscription: Subscription;
   private videosSubject = new BehaviorSubject<Video[]>([]);
   private loadingSubject = new BehaviorSubject<boolean>(false);
-  private videoFetchSubscription: Subscription;
+  loading$ = this.loadingSubject.asObservable();
   nextPageToken = '';
   prevPageToken = '';
   resultsPerPage = '10';
