@@ -4,9 +4,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { YouTubeApiResponse } from './model';
 import { PagedVideoDataCacheService } from './paged-videodata-cache.service';
 
-// Gets API key from secrets.json
-// const secrets = require('../../secrets.json');
-const secrets = { apikey: 'AIzaSyCImn7DsUikapPFYDE4OrI5GP1heXIS8ns'};
+// Get API key from /private/keys.js
+import { secrets } from '../../../private/keys.js';
 
 export const YOU_TUBE_CHANNEL_ID = 'UCbn1OgGei-DV7aSRo_HaAiw';
 export const YOU_TUBE_API_URL = 'https://www.googleapis.com/youtube/v3/search';

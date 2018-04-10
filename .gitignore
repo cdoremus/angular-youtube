@@ -44,4 +44,4 @@ testem.log
 Thumbs.db
 
 # My ignores
-/src/secrets.json
+/private/keys.js
