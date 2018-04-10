@@ -1,7 +1,9 @@
-import { YouTubeApiResponse } from '../app/video-table/model';
+import { YouTubeApiResponse } from '../src/app/video-table/model';
 import { Injectable } from '@angular/core';
-import { VideoTableService } from '../app/video-table/video-table.service';
-import { PaginationDirection, VideoTableDataSource } from '../app/video-table/video-table.datasource';
+import { VideoTableService } from '../src/app/video-table/video-table.service';
+import { PaginationDirection, VideoTableDataSource } from '../src/app/video-table/video-table.datasource';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
 
 export const getApiResponse = () => {
   const response: YouTubeApiResponse = {
@@ -26,6 +28,19 @@ export const getApiResponse = () => {
   };
   return response;
 };
+
+@Injectable()
+export class MockVideoTableService extends VideoTableService {
+
+  constructor(http: HttpClient) {
+    super(null, null);
+   }
+
+  fetchVideos(): Observable<YouTubeApiResponse> {
+    return Observable.create(observer => observer.next(getApiResponse()));
+  }
+
+}
 
 @Injectable()
 export class MockVideoTableDataSource extends VideoTableDataSource {
