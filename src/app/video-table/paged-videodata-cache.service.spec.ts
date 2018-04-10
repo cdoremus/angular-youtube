@@ -48,7 +48,8 @@ describe('PagedVideoDataCacheService', () => {
   it('should NOT return item if it is in the cache, but has timed out', (() => {
     // set now to something before the cache timeout
     const now = 0 - (new Date().getTime() + CACHE_TIMEOUT + 50000);
-    const service = new PagedVideoDataCacheService(now);
+    const service = new PagedVideoDataCacheService();
+    service.currentTimestamp = now;
     const response = {} as YouTubeApiResponse;
     service.add(0, of(response));
     // verify item added
@@ -69,7 +70,6 @@ describe('PagedVideoDataCacheService', () => {
           MockComponent,
         ],
         providers: [
-          {provide: Number, useClass: MockNumber},
           PagedVideoDataCacheService
         ]
       }).compileComponents();
@@ -94,12 +94,6 @@ describe('PagedVideoDataCacheService', () => {
       let cache2 = component2.cache;
       expect(cache2).toBe(cache);
     });
-
-    class MockNumber extends Number {
-      constructor() {
-        super(undefined);
-      }
-    }
 
     @Component({
       template: '<h1>MockComponent</h1>'
