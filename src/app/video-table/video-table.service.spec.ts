@@ -4,6 +4,9 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { VideoTableService, YOU_TUBE_API_URL, YOU_TUBE_CHANNEL_ID } from './video-table.service';
 import { YouTubeApiResponse } from './model';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { getApiResponse, MockVideoTableDataSource } from '../../test/testHelpers';
+import { VideoTableDataSource } from './video-table.datasource';
+import { PagedVideoDataCacheService } from './paged-videodata-cache.service';
 
 describe('VideoTableService', () => {
 
@@ -13,10 +16,12 @@ describe('VideoTableService', () => {
         HttpClientModule,
         HttpClientTestingModule
       ],
-      providers: [VideoTableService]
+      providers: [
+        PagedVideoDataCacheService,
+        VideoTableService
+      ]
     });
   });
-
 
   it('service should be created', inject([VideoTableService],
       (service: VideoTableService) => {
@@ -27,7 +32,6 @@ describe('VideoTableService', () => {
     inject([VideoTableService, HttpTestingController],
       (service: VideoTableService, backend: HttpTestingController) => {
       const apiResponse = getApiResponse();
-
 
       service.fetchVideos('').subscribe(response => {
         expect(response.pageInfo.totalResults).toBe('100');
@@ -64,27 +68,3 @@ describe('VideoTableService', () => {
   );
 
 });
-
-const getApiResponse = () => {
-  const response: YouTubeApiResponse = {
-    nextPageToken: 'nextPage',
-    pageInfo: {resultsPerPage: '10', totalResults: '100'},
-    items: [
-      {
-        id: {kind: 'video', videoId: 'vid1'},
-        snippet: {
-          videoId: 'vid1',
-          title: 'video1',
-          thumbnails: {
-            url: '/vid1',
-            width: 100,
-            height: 200
-          },
-          description: 'video one',
-          publishedAt: new Date()
-        }
-      },
-    ]
-  };
-  return response;
-};

@@ -10,6 +10,7 @@ import { YouTubeApiResponse, Video } from './model';
 import { VideoTableDataSource, PaginationDirection } from './video-table.datasource';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
+import { getApiResponse } from '../../test/testHelpers';
 
 describe('VideoTableComponent', () => {
   let component: VideoTableComponent;
@@ -65,7 +66,7 @@ describe('VideoTableComponent', () => {
 class MockVideoTableService extends VideoTableService {
 
   constructor(public http: HttpClient) {
-    super(http);
+    super(http, null);
    }
 
   fetchVideos(): Observable<YouTubeApiResponse> {
@@ -74,9 +75,10 @@ class MockVideoTableService extends VideoTableService {
 
 }
 
+@Injectable()
 class MockVideoTableDataSource extends VideoTableDataSource {
 
-  constructor(@Inject(VideoTableService) service: VideoTableService) {
+  constructor(service: VideoTableService) {
     super(service);
   }
 
@@ -85,26 +87,26 @@ class MockVideoTableDataSource extends VideoTableDataSource {
   }
 }
 
-const getApiResponse = () => {
-  const response: YouTubeApiResponse = {
-    nextPageToken: 'nextPage',
-    pageInfo: {resultsPerPage: '10', totalResults: '100'},
-    items: [
-      {
-        id: {kind: 'video', videoId: 'vid1'},
-        snippet: {
-          videoId: 'vid1',
-          title: 'video1',
-          thumbnails: {
-            url: '/vid1',
-            width: 100,
-            height: 200
-          },
-          description: 'video one',
-          publishedAt: new Date()
-        }
-      },
-    ]
-  };
-  return response;
-};
+// const getApiResponse = () => {
+//   const response: YouTubeApiResponse = {
+//     nextPageToken: 'nextPage',
+//     pageInfo: {resultsPerPage: '10', totalResults: '100'},
+//     items: [
+//       {
+//         id: {kind: 'video', videoId: 'vid1'},
+//         snippet: {
+//           videoId: 'vid1',
+//           title: 'video1',
+//           thumbnails: {
+//             url: '/vid1',
+//             width: 100,
+//             height: 200
+//           },
+//           description: 'video one',
+//           publishedAt: new Date().toDateString()
+//         }
+//       },
+//     ]
+//   };
+//   return response;
+// };
