@@ -10,8 +10,8 @@ export class AppPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('div.header-container .mat-card-title')).getText();
+  getPageTitle() {
+    return element(by.css('header .mat-card-title')).getText();
   }
 
   getTableRows() {

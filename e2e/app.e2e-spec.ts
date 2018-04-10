@@ -9,7 +9,7 @@ describe('Home page', () => {
 
   it('should display page header title', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('YouTube Angular Channel');
+    expect(page.getPageTitle()).toEqual('YouTube Angular Channel');
   });
 
   it('should display 10 rows in data table', () => {
