@@ -26,7 +26,14 @@ To create and run the application, clone this repository (or unzip the code arch
 
 ## Running the Application in the Development Server
 
-Run `npm start` to start the development server and browse to `http://localhost:4200/` to view the application. The app will automatically reload if you change any of the source files.
+In order to run the application, you need to put a `keys.js` file in a project root folder named `private`. The file will contain your YouTube Data API key. The code in the file should look like this:
+```
+export const secrets = {
+  apikey: 'YouTube Data API key here'
+};
+```
+
+Run `npm start` to build the application and start the development server and browse to [http://localhost:4200/](http://localhost:4200/) to view the application. The app will automatically reload if you change any of the source files.
 
 ## Running Unit Tests
 
@@ -51,7 +58,9 @@ Additional work can be done on the project beyond its original requirements to m
 
 - Allow the user to click on a data table row to display the video content on a separate page so the video can be viewed and the complete description read. This functionality would be encapsulated in a new component and application routing modified to route to this component based on a route parameter containing the value of the `Video.videoId` field.
 
-- Cache the content of each paginated page's data. A start on this functionality has been done in `PagedVideoDataCacheService`. Each page's cache data would include a timestamp to facilitate cache expiration.
+- Cache the content of each paginated page's data. A start on this functionality has been done in `PagedVideoDataCacheService`. Each page's cache data would include a timestamp to facilitate cache expiration. This would save on YouTube API usage costs or limits.
+
+- Move the YouTube Data API key into an environmental variable set at the command line.
 
 - Create header, footer and navigation components to aid `AppComponent` layout and functionality.
 
