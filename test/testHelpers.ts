@@ -16,9 +16,11 @@ export const getApiResponse = () => {
           videoId: 'vid1',
           title: 'video1',
           thumbnails: {
-            url: '/vid1',
-            width: 100,
-            height: 200
+            default: {
+              url: '/vid1',
+              width: 100,
+              height: 200
+            }
           },
           description: 'video one',
           publishedAt: '2018-4-10T0400'

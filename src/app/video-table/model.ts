@@ -1,19 +1,19 @@
 
-interface VideoThumbnail {
-  default: VideoThumbnailData;
-  medium: VideoThumbnailData;
-  high: VideoThumbnailData;
-}
-
 export interface Video {
-  videoId?: string;
-  thumbnails: VideoThumbnailData;
+  videoId?: string; // used to fetch video content
+  thumbnails: VideoThumbnail;
   title: string;
   description: string;
   publishedAt: string;
 }
 
-export interface VideoThumbnailData {
+interface VideoThumbnail {
+  default: VideoThumbnailData;
+  medium?: VideoThumbnailData;
+  high?: VideoThumbnailData;
+}
+
+interface VideoThumbnailData {
   url: string;
   width: number;
   height: number;
