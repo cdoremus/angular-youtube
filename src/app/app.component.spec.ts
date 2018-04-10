@@ -38,11 +38,4 @@ describe('AppComponent', () => {
     expect(el.nativeElement.textContent).toContain('YouTube Angular Channel');
   }));
 
-  it('should create an app-video-table component', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-
-    const el = fixture.debugElement.query(By.css('app-video-table'));
-    expect(el).toBeTruthy();
-  }));
 });

@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { VideoTableModule } from './video-table/video-table.module';
 import { SharedModule } from './shared/shared.module';
 import { ErrorHandlerService } from './shared/error-handler.service';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ErrorHandlerService } from './shared/error-handler.service';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     VideoTableModule,
     HttpClientModule,
     MaterialModule,
