@@ -4,7 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { VideoTableService, YOU_TUBE_API_URL, YOU_TUBE_CHANNEL_ID } from './video-table.service';
 import { YouTubeApiResponse } from './model';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { getApiResponse, MockVideoTableDataSource } from '../../test/testHelpers';
+import { getApiResponse, MockVideoTableDataSource } from '../../../test/testHelpers';
 import { VideoTableDataSource } from './video-table.datasource';
 import { PagedVideoDataCacheService } from './paged-videodata-cache.service';
 

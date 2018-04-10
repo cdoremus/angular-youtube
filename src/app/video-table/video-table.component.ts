@@ -4,7 +4,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs/Subscription';
 import { tap } from 'rxjs/operators';
 
-import { VideoTableService } from './video-table.service';
 import { VideoTableDataSource, PaginationDirection } from './video-table.datasource';
 
 @Component({
@@ -20,7 +19,7 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(public service: VideoTableService, public dataSource: VideoTableDataSource) {}
+  constructor(public dataSource: VideoTableDataSource) {}
 
   ngOnInit() {
     this.dataSource.fetchVideos(PaginationDirection.NONE);

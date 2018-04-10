@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/test
 import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 
 import { VideoTableComponent } from './video-table.component';
-import { CUSTOM_ELEMENTS_SCHEMA, Inject, Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { MaterialModule } from '../shared/material.module';
 import { VideoTableService } from './video-table.service';
 import { Observable } from 'rxjs/Observable';
@@ -10,7 +10,8 @@ import { YouTubeApiResponse, Video } from './model';
 import { VideoTableDataSource, PaginationDirection } from './video-table.datasource';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
-import { getApiResponse } from '../../test/testHelpers';
+import { getApiResponse, MockVideoTableDataSource } from '../../../test/testHelpers';
+import { MatPaginator, MatPaginatorIntl } from '@angular/material';
 
 describe('VideoTableComponent', () => {
   let component: VideoTableComponent;
@@ -25,10 +26,8 @@ describe('VideoTableComponent', () => {
       providers: [
         HttpClient,
         HttpHandler,
-        { provide: VideoTableService, useClass: MockVideoTableService },
-        { provide: VideoTableDataSource, useClass: MockVideoTableDataSource }
-      ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+        { provide: VideoTableDataSource, useValue: new MockVideoTableDataSource() }
+      ]
     })
     .compileComponents();
 
@@ -60,53 +59,16 @@ describe('VideoTableComponent', () => {
     expect(el.nativeElement.innerHTML).toBe('10');
   });
 
+  it('should call dataSource.fetchVideos when fetchVideos is invoked', () => {
+    const dataSource = new VideoTableDataSource(null);
+    const intl = new MatPaginatorIntl();
+    const paginator = new MatPaginator(intl, null);
+    const tableComponent = new VideoTableComponent(dataSource);
+    tableComponent.paginator = paginator;
+    spyOn(dataSource, 'fetchVideos');
+
+    tableComponent.fetchVideosPage();
+
+    expect(dataSource.fetchVideos).toHaveBeenCalled();
+  });
 });
-
-@Injectable()
-class MockVideoTableService extends VideoTableService {
-
-  constructor(public http: HttpClient) {
-    super(http, null);
-   }
-
-  fetchVideos(): Observable<YouTubeApiResponse> {
-    return Observable.create(observer => observer.next(getApiResponse()));
-  }
-
-}
-
-@Injectable()
-class MockVideoTableDataSource extends VideoTableDataSource {
-
-  constructor(service: VideoTableService) {
-    super(service);
-  }
-
-  fetchVideos(paginationDirection: PaginationDirection) {
-    // noop
-  }
-}
-
-// const getApiResponse = () => {
-//   const response: YouTubeApiResponse = {
-//     nextPageToken: 'nextPage',
-//     pageInfo: {resultsPerPage: '10', totalResults: '100'},
-//     items: [
-//       {
-//         id: {kind: 'video', videoId: 'vid1'},
-//         snippet: {
-//           videoId: 'vid1',
-//           title: 'video1',
-//           thumbnails: {
-//             url: '/vid1',
-//             width: 100,
-//             height: 200
-//           },
-//           description: 'video one',
-//           publishedAt: new Date().toDateString()
-//         }
-//       },
-//     ]
-//   };
-//   return response;
-// };
