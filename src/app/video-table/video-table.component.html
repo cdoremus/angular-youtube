@@ -4,7 +4,7 @@
 
       <ng-container matColumnDef="thumbnail">
         <mat-header-cell *matHeaderCellDef> Thumbnail </mat-header-cell>
-        <mat-cell *matCellDef="let video"> <img mat-card-sm-image src="{{ video.thumbnails.default.url }}" width="{{ video.thumbnails.default.width }}" height="{{ video.thumbnails.default.height }}"> </mat-cell>
+        <mat-cell *matCellDef="let video"> <img mat-card-sm-image [src]="video.thumbnails.default.url" [width]="video.thumbnails.default.width" [height]="video.thumbnails.default.height"> </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="title">
