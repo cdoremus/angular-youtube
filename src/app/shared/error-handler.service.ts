@@ -1,4 +1,4 @@
-import { Injectable, ErrorHandler, Injector } from '@angular/core';
+import { Injectable, ErrorHandler } from '@angular/core';
 
 export interface ErrorResponse {
   headers: Object;
@@ -29,7 +29,7 @@ export const UIMessage = {
 @Injectable()
 export class ErrorHandlerService extends ErrorHandler {
 
-  constructor(private injector: Injector) {
+  constructor() {
     super();
   }
 
@@ -44,14 +44,16 @@ export class ErrorHandlerService extends ErrorHandler {
       Error status: ${error.status} ${error.statusText} (${now})
     `);
     // log YouTube error data, if present
-    const youtubeError = error.error as YouTubeApiErrorResponse;
-    if (youtubeError.error) {
-      youtubeError.error.errors.forEach ((err, index) => {
-        console.error(`YouTube Api Error (# ${index + 1}): domain=${err.domain}; message=${err.message}; reason=${err.reason}`);
-      });
-      console.error('YouTubeApiError errors object', youtubeError.error.errors);
-    } else {
-      console.error('ErrorResponse error object', error.error);
+    if (error.error) {
+      const youtubeError = error.error as YouTubeApiErrorResponse;
+      if (youtubeError.error) {
+        youtubeError.error.errors.forEach ((err, index) => {
+          console.error(`YouTube Api Error (# ${index + 1}): domain=${err.domain}; message=${err.message}; reason=${err.reason}`);
+        });
+        console.error('YouTubeApiError errors object', youtubeError.error.errors);
+      } else {
+        console.error('ErrorResponse error object', error.error);
+      }
     }
     // IMPORTANT: Rethrow the error otherwise error gets swallowed
     super.handleError(error);

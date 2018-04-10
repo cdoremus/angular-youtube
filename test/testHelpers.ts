@@ -21,7 +21,7 @@ export const getApiResponse = () => {
             height: 200
           },
           description: 'video one',
-          publishedAt: new Date().toDateString()
+          publishedAt: '2018-4-10T0400'
         }
       },
     ]
