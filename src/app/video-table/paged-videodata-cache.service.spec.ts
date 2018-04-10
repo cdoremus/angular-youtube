@@ -4,6 +4,7 @@ import { TestBed, inject, ComponentFixture } from '@angular/core/testing';
 import { PagedVideoDataCacheService, CACHE_TIMEOUT } from './paged-videodata-cache.service';
 import { YouTubeApiResponse } from './model';
 import { BrowserModule } from '@angular/platform-browser';
+import { of } from 'rxjs/observable/of';
 
 describe('PagedVideoDataCacheService', () => {
   beforeEach(() => {
@@ -18,14 +19,14 @@ describe('PagedVideoDataCacheService', () => {
   it('should add an item to the cache', (() => {
     const service = new PagedVideoDataCacheService();
     const response = {} as YouTubeApiResponse;
-    service.add(0, response);
+    service.add(0, of(response));
     expect(service.cache.size).toBe(1);
   }));
 
   it('should return null if item is NOT in the cache', (() => {
     const service = new PagedVideoDataCacheService();
     const response = {} as YouTubeApiResponse;
-    service.add(0, response);
+    service.add(0, of(response));
     // verify item added
     expect(service.cache.size).toBe(1);
     const item = service.get(1);
@@ -35,11 +36,13 @@ describe('PagedVideoDataCacheService', () => {
   it('should return item if it is in the cache', (() => {
     const service = new PagedVideoDataCacheService();
     const response = {} as YouTubeApiResponse;
-    service.add(0, response);
+    service.add(0, of(response));
     // verify item added
     expect(service.cache.size).toBe(1);
     const item = service.get(0);
-    expect(item.data).toBe(response);
+    item.subscribe(data => {
+      expect(data).toBe(response);
+    });
   }));
 
   it('should NOT return item if it is in the cache, but has timed out', (() => {
@@ -47,7 +50,7 @@ describe('PagedVideoDataCacheService', () => {
     const now = 0 - (new Date().getTime() + CACHE_TIMEOUT + 50000);
     const service = new PagedVideoDataCacheService(now);
     const response = {} as YouTubeApiResponse;
-    service.add(0, response);
+    service.add(0, of(response));
     // verify item added
     expect(service.cache.size).toBe(1);
     const item = service.get(0);
