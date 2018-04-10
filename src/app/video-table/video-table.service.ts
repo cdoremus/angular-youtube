@@ -15,7 +15,7 @@ export class VideoTableService {
 
   constructor(public http: HttpClient, private cache: PagedVideoDataCacheService) { }
 
-  fetchVideos(pageToken: string = '', pageIndex?: number): Observable<YouTubeApiResponse> {
+  fetchVideoData(pageToken: string = '', pageIndex?: number): Observable<YouTubeApiResponse> {
     let params =
       new HttpParams()
       .set('part', 'snippet')

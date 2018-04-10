@@ -65,10 +65,10 @@ describe('VideoTableComponent', () => {
     const paginator = new MatPaginator(intl, null);
     const tableComponent = new VideoTableComponent(dataSource);
     tableComponent.paginator = paginator;
-    spyOn(dataSource, 'fetchVideos');
+    spyOn(dataSource, 'fetchVideoData');
 
     tableComponent.fetchVideosPage();
 
-    expect(dataSource.fetchVideos).toHaveBeenCalled();
+    expect(dataSource.fetchVideoData).toHaveBeenCalled();
   });
 });

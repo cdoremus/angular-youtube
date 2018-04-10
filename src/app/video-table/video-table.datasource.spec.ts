@@ -11,12 +11,12 @@ describe('VideoTableDataSource', () => {
 
   it('should call service.fetchVideos when fetchVideos is invoked and set internal properties', () => {
     const service = new VideoTableService(null, null);
-    spyOn(service, 'fetchVideos').and.callFake(() => {
+    spyOn(service, 'fetchVideoData').and.callFake(() => {
       return of(getApiResponse());
     });
     const datasource = new VideoTableDataSource(service);
 
-    datasource.fetchVideos(PaginationDirection.NEXT);
+    datasource.fetchVideoData(PaginationDirection.NEXT);
 
     expect(datasource.nextPageToken).toEqual(getApiResponse().nextPageToken);
     expect(datasource.totalResults).toEqual(getApiResponse().pageInfo.totalResults);

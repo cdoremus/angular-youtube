@@ -33,7 +33,7 @@ describe('VideoTableService', () => {
       (service: VideoTableService, backend: HttpTestingController) => {
       const apiResponse = getApiResponse();
 
-      service.fetchVideos('').subscribe(response => {
+      service.fetchVideoData('').subscribe(response => {
         expect(response.pageInfo.totalResults).toBe('100');
       });
 
@@ -52,7 +52,7 @@ describe('VideoTableService', () => {
       const apiResponse = getApiResponse();
       const pageToken = 'page1'  ;
 
-      service.fetchVideos(pageToken).subscribe(response => {
+      service.fetchVideoData(pageToken).subscribe(response => {
         // console.log('Service response: ', response);
         expect(response.pageInfo.totalResults).toBe('100');
         expect(response.items.length).toBe(1);

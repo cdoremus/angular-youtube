@@ -38,7 +38,7 @@ export class MockVideoTableService extends VideoTableService {
     super(null, null);
    }
 
-  fetchVideos(): Observable<YouTubeApiResponse> {
+  fetchVideoData(): Observable<YouTubeApiResponse> {
     return Observable.create(observer => observer.next(getApiResponse()));
   }
 
@@ -51,7 +51,7 @@ export class MockVideoTableDataSource extends VideoTableDataSource {
     super(service);
   }
 
-  fetchVideos(paginationDirection: PaginationDirection) {
+  fetchVideoData(paginationDirection: PaginationDirection) {
     // noop
   }
 }

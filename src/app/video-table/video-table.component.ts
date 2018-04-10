@@ -22,7 +22,7 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(public dataSource: VideoTableDataSource) {}
 
   ngOnInit() {
-    this.dataSource.fetchVideos(PaginationDirection.NONE);
+    this.dataSource.fetchVideoData(PaginationDirection.NONE);
   }
 
   ngOnDestroy() {
@@ -45,7 +45,7 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
     const index = this.paginator.pageIndex;
     const pagingDirection: PaginationDirection =
       index >= this.pageIndex ? PaginationDirection.NEXT : PaginationDirection.PREV;
-    this.dataSource.fetchVideos(pagingDirection, index);
+    this.dataSource.fetchVideoData(pagingDirection, index);
     this.pageIndex = index;
   }
 
