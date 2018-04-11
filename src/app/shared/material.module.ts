@@ -1,3 +1,7 @@
+/**
+ * Custom Angular module that encapsulates
+ * Angular Material modules.
+ */
 import { NgModule } from '@angular/core';
 import {
     MatAutocompleteModule,

@@ -7,6 +7,15 @@ import { MaterialModule } from '../shared/material.module';
 import { VideoTableDataSource } from './video-table.datasource';
 import { PagedVideoDataCacheService } from './paged-videodata-cache.service';
 
+/**
+ * Registers imported dependencies, components,
+ * services providers and exports for this module
+ * encapsulating the data table used to display
+ * YouTube video information.
+ *
+ * @export
+ * @class VideoTableModule
+ */
 @NgModule({
   imports: [
     CommonModule,

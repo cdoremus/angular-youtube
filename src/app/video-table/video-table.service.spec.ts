@@ -28,7 +28,7 @@ describe('VideoTableService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it('fetchVideos should be called with null pageToken param', async(
+  it('fetchVideoData should be called with null pageToken param', async(
     inject([VideoTableService, HttpTestingController],
       (service: VideoTableService, backend: HttpTestingController) => {
       const apiResponse = getApiResponse();
@@ -46,7 +46,7 @@ describe('VideoTableService', () => {
     }) /* inject*/ ) /* async */
   );
 
-  it('fetchVideos should be called with pageToken param not null', async(
+  it('fetchVideoData should be called with pageToken param not null', async(
     inject([VideoTableService, HttpTestingController],
       (service: VideoTableService, backend: HttpTestingController) => {
       const apiResponse = getApiResponse();

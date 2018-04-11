@@ -40,6 +40,7 @@ describe('PagedVideoDataCacheService', () => {
     // verify item added
     expect(service.cache.size).toBe(1);
     const item = service.get(0);
+    // @ts-ignore-next-line: null-check
     item.subscribe(data => {
       expect(data).toBe(response);
     });
@@ -67,12 +68,14 @@ describe('PagedVideoDataCacheService', () => {
           BrowserModule,
         ],
         declarations: [
+          // tslint:disable-next-line
           MockComponent,
         ],
         providers: [
           PagedVideoDataCacheService
         ]
       }).compileComponents();
+      // tslint:disable-next-line
       fixture = TestBed.createComponent(MockComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();

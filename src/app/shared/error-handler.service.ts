@@ -1,5 +1,8 @@
 import { Injectable, ErrorHandler } from '@angular/core';
 
+/**
+ * Data in the error response.
+ */
 export interface ErrorResponse {
   headers: Object;
   status: number;
@@ -11,6 +14,9 @@ export interface ErrorResponse {
   error: Event | YouTubeApiErrorResponse;
 }
 
+/**
+ * Data in the error response from the YouTube Data API
+ */
 export interface YouTubeApiErrorResponse {
   error: {
     errors: { domain: string, reason: string, message: string }[]
@@ -19,6 +25,10 @@ export interface YouTubeApiErrorResponse {
   };
 }
 
+/**
+ * Holds non-technical messages for use in the UI. The keys
+ * are know HTTP status codes from the YouTube Data API.
+ */
 export const UIMessage = {
   0: 'Unknown Error. Please try again later and if the problem still persists, contact the application administrator.',
   400: 'Bad data request. Please try again later and if the problem still persists, contact the application administrator.',
@@ -26,6 +36,11 @@ export const UIMessage = {
   404: 'Data not found. Please see the application administrator.',
 };
 
+/**
+ * Service that replaces the built-in Angular error handler,
+ * adding an alert() to show a non-technical message to the user
+ * and additional logging.
+ */
 @Injectable()
 export class ErrorHandlerService extends ErrorHandler {
 
@@ -34,7 +49,7 @@ export class ErrorHandlerService extends ErrorHandler {
   }
 
   handleError(error: ErrorResponse) {
-    // get current date & time
+    // get current date & time and log it
     const now = new Date();
     console.error(`Error occurred (ErrorHandlerService#handleError): ${now}`);
     // alert the user with a non-technical message
@@ -55,7 +70,8 @@ export class ErrorHandlerService extends ErrorHandler {
         console.error('ErrorResponse error object', error.error);
       }
     }
-    // IMPORTANT: Rethrow the error otherwise error gets swallowed
+    // Call super() otherwise error gets swallowed.
+    // This triggers logging by the Angular error handler.
     super.handleError(error);
  }
 
