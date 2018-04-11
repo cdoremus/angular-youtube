@@ -1,5 +1,5 @@
 import { YouTubeApiResponse } from '../src/app/video-table/model';
-import { Injectable } from '@angular/core';
+import { Injectable, Component, NgModule } from '@angular/core';
 import { VideoTableService } from '../src/app/video-table/video-table.service';
 import { PaginationDirection, VideoTableDataSource } from '../src/app/video-table/video-table.datasource';
 import { Observable } from 'rxjs/Observable';
@@ -55,3 +55,17 @@ export class MockVideoTableDataSource extends VideoTableDataSource {
     // noop
   }
 }
+
+@Component({
+  template: '<h2>MockComponent</h2>'
+})
+export class MockComponent {
+  constructor() {}
+}
+
+@NgModule({
+  imports: [],
+  declarations: [MockComponent],
+  exports: [MockComponent]
+})
+export class MockModule {}

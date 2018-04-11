@@ -10,8 +10,9 @@ import { YouTubeApiResponse, Video } from './model';
 import { VideoTableDataSource, PaginationDirection } from './video-table.datasource';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
-import { getApiResponse, MockVideoTableDataSource } from '../../../test/testHelpers';
+import { getApiResponse, MockVideoTableDataSource, MockModule, MockComponent } from '../../../test/testHelpers';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('VideoTableComponent', () => {
   let component: VideoTableComponent;
@@ -21,6 +22,10 @@ describe('VideoTableComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MaterialModule,
+        MockModule,
+        RouterTestingModule.withRoutes([
+          { path: '', component: MockComponent },
+        ]),
       ],
       declarations: [ VideoTableComponent ],
       providers: [
@@ -63,7 +68,7 @@ describe('VideoTableComponent', () => {
     const dataSource = new VideoTableDataSource(null);
     const intl = new MatPaginatorIntl();
     const paginator = new MatPaginator(intl, null);
-    const tableComponent = new VideoTableComponent(dataSource);
+    const tableComponent = new VideoTableComponent(dataSource, null);
     tableComponent.paginator = paginator;
     spyOn(dataSource, 'fetchVideoData');
 

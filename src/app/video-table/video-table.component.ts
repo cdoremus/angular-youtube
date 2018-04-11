@@ -6,6 +6,7 @@ import { tap } from 'rxjs/operators';
 
 import { VideoTableDataSource, PaginationDirection } from './video-table.datasource';
 import { CollectionViewer } from '@angular/cdk/collections';
+import { Router } from '@angular/router';
 
 /**
  * Component that contains the Angular Material
@@ -33,7 +34,7 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
   // holds a reference to the paginator used by the data table
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(public dataSource: VideoTableDataSource) {}
+  constructor(public dataSource: VideoTableDataSource, private router: Router) {}
 
   /**
    * Angular lifecycle method used here to fetch
@@ -92,4 +93,7 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
     this.pageIndex = index;
   }
 
+  navigateToDetails(event) {
+    console.log('Navigating to details with event: ', event);
+  }
 }

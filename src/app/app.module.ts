@@ -10,16 +10,18 @@ import { VideoTableModule } from './video-table/video-table.module';
 import { SharedModule } from './shared/shared.module';
 import { ErrorHandlerService } from './shared/error-handler.service';
 import { AppRoutingModule } from './app-routing.module';
+import { VideoDetailsModule } from './video-details/video-details.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     VideoTableModule,
+    VideoDetailsModule,
     HttpClientModule,
     MaterialModule,
     SharedModule,
