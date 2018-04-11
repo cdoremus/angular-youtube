@@ -16,6 +16,9 @@ export const YOU_TUBE_API_URL = 'https://www.googleapis.com/youtube/v3/search';
  *
  * The Angular HttpClient class is used to do the data fetching.
  *
+ * TODO: Caching with the PagedVideoDataCacheService class
+ * has not been fully implemented.
+ *
  * @export
  * @class VideoTableService
  */
