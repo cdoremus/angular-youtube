@@ -62,6 +62,8 @@ Additional work can be done on the project beyond its original requirements to m
 
 - Move the YouTube Data API key into an environmental variable set at the command line.
 
+- Implement a logging service that connects with a server-side alerting service like Sentry.
+
 - Create header, footer and navigation components to aid `AppComponent` layout and functionality.
 
 - Use CSS media queries to adapt the layout of the video table (and any new pages) to small screens.
