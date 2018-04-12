@@ -93,7 +93,9 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
     this.pageIndex = index;
   }
 
-  navigateToDetails(event) {
-    console.log('Navigating to details with event: ', event);
+  navigateToDetails(video: Video) {
+    console.log('Navigating to details with video: ', video);
+    this.dataSource.setCurrentVideo(video);
+    this.router.navigate(['/', video.videoId]);
   }
 }

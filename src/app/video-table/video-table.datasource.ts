@@ -131,4 +131,7 @@ export class VideoTableDataSource implements DataSource<Video> {
     );
   }
 
+  setCurrentVideo(video: Video) {
+    this.service.currentVideo = video;
+  }
 }
