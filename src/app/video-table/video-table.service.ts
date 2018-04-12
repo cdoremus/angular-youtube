@@ -24,7 +24,6 @@ export const YOU_TUBE_API_URL = 'https://www.googleapis.com/youtube/v3/search';
  */
 @Injectable()
 export class VideoTableService {
-  private _currentVideo: Video;
 
   constructor(public http: HttpClient, private cache: PagedVideoDataCacheService) { }
 
@@ -52,14 +51,6 @@ export class VideoTableService {
         params = params.set('pageToken', pageToken);
       }
     return this.http.get(YOU_TUBE_API_URL, { params }) as Observable<YouTubeApiResponse>;
-  }
-
-  set currentVideo(video: Video) {
-    this._currentVideo = video;
-  }
-
-  get currentVideo() {
-    return this._currentVideo;
   }
 
 }

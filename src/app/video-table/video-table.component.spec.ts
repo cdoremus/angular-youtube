@@ -13,6 +13,7 @@ import { By } from '@angular/platform-browser';
 import { getApiResponse, MockVideoTableDataSource, MockModule, MockComponent } from '../../../test/testHelpers';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NgRedux } from '@angular-redux/store';
 
 describe('VideoTableComponent', () => {
   let component: VideoTableComponent;
@@ -31,6 +32,7 @@ describe('VideoTableComponent', () => {
       providers: [
         HttpClient,
         HttpHandler,
+        NgRedux,
         { provide: VideoTableDataSource, useValue: new MockVideoTableDataSource() }
       ]
     })
@@ -68,7 +70,7 @@ describe('VideoTableComponent', () => {
     const dataSource = new VideoTableDataSource(null);
     const intl = new MatPaginatorIntl();
     const paginator = new MatPaginator(intl, null);
-    const tableComponent = new VideoTableComponent(dataSource, null);
+    const tableComponent = new VideoTableComponent(dataSource, null, null);
     tableComponent.paginator = paginator;
     spyOn(dataSource, 'fetchVideoData');
 

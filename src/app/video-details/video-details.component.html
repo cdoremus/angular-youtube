@@ -1,19 +1,19 @@
 <div class="video-details-container">
-  <div class="video-details" *ngIf="currentVideo">
+  <div class="video-details">
     <mat-card>
-      <mat-card-title>{{currentVideo.title}}</mat-card-title>
+      <mat-card-title>{{title | async}}</mat-card-title>
       <iframe width="560" height="315" [src]="embedUrl"
         frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
       </iframe>
-      <mat-card-content>{{currentVideo.description}}</mat-card-content>
+      <mat-card-content>{{description | async}}</mat-card-content>
     </mat-card>
   </div>
-  <div class="video-details" *ngIf="!currentVideo">
-      <mat-card>
-        <mat-card-title>
-            Video Not Found. Please return to home page and click on the video row again.
-        </mat-card-title>
-      </mat-card>
+  <div class="video-details" *ngIf="false">
+    <mat-card>
+      <mat-card-title>
+          Video Not Found. Please return to home page and click on the video row again.
+      </mat-card-title>
+    </mat-card>
 
   </div>
 </div>

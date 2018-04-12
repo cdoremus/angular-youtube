@@ -3,7 +3,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { VideoDetailsComponent } from './video-details.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from '../app.component';
-import { MockModule, MockComponent } from '../../../test/testHelpers';
+import { MockModule, MockComponent, MockVideoTableService } from '../../../test/testHelpers';
+import { MaterialModule } from '../shared/material.module';
+import { VideoTableService } from '../video-table/video-table.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('VideoDetailsComponent', () => {
   let component: VideoDetailsComponent;
@@ -13,11 +17,17 @@ describe('VideoDetailsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MockModule,
+        MaterialModule,
+        HttpClientModule,
+        HttpClientTestingModule,
         RouterTestingModule.withRoutes([
-          { path: '', component: MockComponent },
+          { path: '', component: MockComponent }
         ]),
       ],
-      declarations: [ VideoDetailsComponent ]
+      declarations: [ VideoDetailsComponent ],
+      providers: [
+        { provide: VideoTableService, useClass: MockVideoTableService},
+      ]
     })
     .compileComponents();
   }));

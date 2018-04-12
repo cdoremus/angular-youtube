@@ -7,6 +7,9 @@ import { tap } from 'rxjs/operators';
 import { VideoTableDataSource, PaginationDirection } from './video-table.datasource';
 import { CollectionViewer } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
+import { NgRedux } from '@angular-redux/store';
+import { AppState } from '../redux/root';
+import { setCurrentVideoActionCreator } from '../redux/actions';
 
 /**
  * Component that contains the Angular Material
@@ -34,7 +37,10 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
   // holds a reference to the paginator used by the data table
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(public dataSource: VideoTableDataSource, private router: Router) {}
+  constructor(
+    public dataSource: VideoTableDataSource,
+    private router: Router,
+    private redux: NgRedux<AppState>) {}
 
   /**
    * Angular lifecycle method used here to fetch
@@ -43,6 +49,7 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
    * @memberof VideoTableComponent
    */
   ngOnInit() {
+    console.log('VideoTableComponent.ngOnInit() called');
     this.dataSource.fetchVideoData(PaginationDirection.NONE);
   }
 
@@ -54,6 +61,7 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
    * @memberof VideoTableComponent
    */
   ngOnDestroy() {
+    console.log('VideoTableComponent.ngOnDestroy() called');
     if (this.pageEventSubscription) {
       this.pageEventSubscription.unsubscribe();
     }
@@ -71,6 +79,7 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
    * @memberof VideoTableComponent
    */
   ngAfterViewInit() {
+    console.log('VideoTableComponent.ngAfterViewInit() called');
     this.pageEventSubscription = this.paginator.page
       .pipe(
         tap((event) => {
@@ -95,7 +104,7 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   navigateToDetails(video: Video) {
     console.log('Navigating to details with video: ', video);
-    this.dataSource.setCurrentVideo(video);
+    this.redux.dispatch(setCurrentVideoActionCreator(video));
     this.router.navigate(['/', video.videoId]);
   }
 }

@@ -11,6 +11,8 @@ import { SharedModule } from './shared/shared.module';
 import { ErrorHandlerService } from './shared/error-handler.service';
 import { AppRoutingModule } from './app-routing.module';
 import { VideoDetailsModule } from './video-details/video-details.module';
+import { NgRedux, NgReduxModule } from '@angular-redux/store';
+import { AppState, rootReducer, INITIAL_STATE } from './redux/root';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { VideoDetailsModule } from './video-details/video-details.module';
     HttpClientModule,
     MaterialModule,
     SharedModule,
+    NgReduxModule,
   ],
   providers: [
     {
@@ -34,4 +37,8 @@ import { VideoDetailsModule } from './video-details/video-details.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(ngRedux: NgRedux<AppState>){
+    ngRedux.configureStore(rootReducer, INITIAL_STATE);
+  }
+}
