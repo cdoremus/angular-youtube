@@ -94,7 +94,8 @@ export class VideoTableDataSource implements DataSource<Video> {
    */
   fetchVideoData(paginationDirection: PaginationDirection, pageIndex?: number) {
     this.loadingSubject.next(true);
-    const pageToken: string = paginationDirection === PaginationDirection.NEXT ? this.nextPageToken : this.prevPageToken;
+    const pageToken: string = paginationDirection === PaginationDirection.NONE ? '' :
+      paginationDirection === PaginationDirection.NEXT ? this.nextPageToken : this.prevPageToken;
     this.videoFetchSubscription = this.service.fetchVideoData(pageToken)
       .pipe(
         catchError((error) => {

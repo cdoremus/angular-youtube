@@ -1,5 +1,6 @@
 import { Video } from '../video-table/model';
 import { AppAction, AppActionType } from './actions';
+import { Reducer } from 'redux';
 
 export interface AppState {
   currentVideo: Video;
@@ -9,7 +10,7 @@ export const INITIAL_STATE: AppState = {
   currentVideo: {videoId: '', title: '', description: '', publishedAt: '', thumbnails: {default: {height: 0, width: 0, url: ''}} }
 };
 
-export const rootReducer = (
+export const rootReducer: Reducer<AppState> = (
   state: AppState,
   action: AppAction<any> ): AppState => {
   switch (action.type) {
