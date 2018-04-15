@@ -49,7 +49,6 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
    * @memberof VideoTableComponent
    */
   ngOnInit() {
-    console.log('VideoTableComponent.ngOnInit() called');
     this.dataSource.fetchVideoData(PaginationDirection.NONE);
   }
 
@@ -61,11 +60,9 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
    * @memberof VideoTableComponent
    */
   ngOnDestroy() {
-    console.log('VideoTableComponent.ngOnDestroy() called');
     if (this.pageEventSubscription) {
       this.pageEventSubscription.unsubscribe();
     }
-    this.dataSource.disconnect({} as CollectionViewer);
   }
 
   /**
@@ -79,7 +76,6 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
    * @memberof VideoTableComponent
    */
   ngAfterViewInit() {
-    console.log('VideoTableComponent.ngAfterViewInit() called');
     this.pageEventSubscription = this.paginator.page
       .pipe(
         tap((event) => {
