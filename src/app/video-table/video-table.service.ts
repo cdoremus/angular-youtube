@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { YouTubeApiResponse, Video } from './model';
-import { PagedVideoDataCacheService } from './paged-videodata-cache.service';
 
 // Get API key from /private/keys.js
 import { secrets } from '../../../private/keys.js';
@@ -16,8 +15,6 @@ export const YOU_TUBE_API_URL = 'https://www.googleapis.com/youtube/v3/search';
  *
  * The Angular HttpClient class is used to do the data fetching.
  *
- * TODO: Caching with the PagedVideoDataCacheService class
- * has not been fully implemented.
  *
  * @export
  * @class VideoTableService
@@ -25,7 +22,7 @@ export const YOU_TUBE_API_URL = 'https://www.googleapis.com/youtube/v3/search';
 @Injectable()
 export class VideoTableService {
 
-  constructor(public http: HttpClient, private cache: PagedVideoDataCacheService) { }
+  constructor(public http: HttpClient) { }
 
   /**
    * Fetches information from the YouTube Data API

@@ -59,7 +59,7 @@ export const getApiResponseItem = (
 export class MockVideoTableService extends VideoTableService {
 
   constructor(http: HttpClient) {
-    super(null, null);
+    super(null);
    }
 
   fetchVideoData(): Observable<YouTubeApiResponse> {

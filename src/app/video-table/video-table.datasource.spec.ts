@@ -12,7 +12,7 @@ describe('VideoTableDataSource', () => {
   });
 
   it('should call service.fetchVideos when fetchVideos is invoked and set internal properties', () => {
-    const service = new VideoTableService(null, null);
+    const service = new VideoTableService(null);
     spyOn(service, 'fetchVideoData').and.callFake(() => {
       return of(getApiResponse());
     });

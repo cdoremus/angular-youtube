@@ -5,7 +5,6 @@ import { VideoTableService } from './video-table.service';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../shared/material.module';
 import { VideoTableDataSource } from './video-table.datasource';
-import { PagedVideoDataCacheService } from './paged-videodata-cache.service';
 
 /**
  * Registers imported dependencies, components,
@@ -26,7 +25,6 @@ import { PagedVideoDataCacheService } from './paged-videodata-cache.service';
     VideoTableComponent
   ],
   providers: [
-    PagedVideoDataCacheService,
     VideoTableDataSource,
     VideoTableService
   ],
