@@ -14,6 +14,7 @@ import { getApiResponse, MockVideoTableDataSource, MockModule, MockComponent } f
 import { MatPaginator, MatPaginatorIntl } from '@angular/material';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgRedux } from '@angular-redux/store';
+import { AppState } from '../redux/root';
 
 describe('VideoTableComponent', () => {
   let component: VideoTableComponent;
@@ -67,7 +68,7 @@ describe('VideoTableComponent', () => {
   });
 
   it('should call dataSource.fetchVideos when fetchVideos is invoked', () => {
-    const dataSource = new VideoTableDataSource(null);
+    const dataSource = new VideoTableDataSource(null, {} as NgRedux<AppState>);
     const intl = new MatPaginatorIntl();
     const paginator = new MatPaginator(intl, null);
     const tableComponent = new VideoTableComponent(dataSource, null, null);

@@ -4,6 +4,8 @@ import { VideoTableService } from './video-table.service';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { getApiResponse } from '../../../test/testHelpers';
+import { INITIAL_STATE, AppState } from '../redux/root';
+import { NgRedux } from '@angular-redux/store';
 
 describe('VideoTableDataSource', () => {
   beforeEach(() => {
@@ -14,7 +16,8 @@ describe('VideoTableDataSource', () => {
     spyOn(service, 'fetchVideoData').and.callFake(() => {
       return of(getApiResponse());
     });
-    const datasource = new VideoTableDataSource(service);
+    const redux: NgRedux<AppState> = {getState: () => INITIAL_STATE} as NgRedux<AppState>;
+    const datasource = new VideoTableDataSource(service, redux);
 
     datasource.fetchVideoData(PaginationDirection.NEXT);
 

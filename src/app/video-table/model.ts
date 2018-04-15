@@ -72,3 +72,8 @@ export interface YouTubeApiResponseItem {
   id: {kind: string, videoId: string};
   snippet: Video;
 }
+
+export interface YouTubeApiResponseMapEntry {
+  // key is the pageToken
+  [key: string]: YouTubeApiResponse;
+}

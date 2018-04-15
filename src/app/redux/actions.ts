@@ -1,8 +1,9 @@
 import { Action } from 'redux';
-import { Video } from '../video-table/model';
+import { Video, YouTubeApiResponse, YouTubeApiResponseMapEntry } from '../video-table/model';
 
 export enum AppActionType {
   SET_CURRENT_VIDEO = 'SET_CURRENT_ACTION',
+  MAP_API_RESPONSE = 'MAP_API_RESPONSE',
 }
 
 /********* Actions **********/
@@ -17,6 +18,11 @@ export interface SetCurrentVideoAction extends AppAction<Video> {
   payload: Video;
 }
 
+export interface MapApiResponseAction extends AppAction<YouTubeApiResponseMapEntry> {
+  type: AppActionType.MAP_API_RESPONSE;
+  payload: YouTubeApiResponseMapEntry;
+}
+
 /********* Action Creators **********/
 
 export const setCurrentVideoActionCreator = (video: Video): SetCurrentVideoAction => {
@@ -26,3 +32,9 @@ export const setCurrentVideoActionCreator = (video: Video): SetCurrentVideoActio
   };
 };
 
+export const mapApiResponseActionCreator = (pageToken: string, response: YouTubeApiResponse): MapApiResponseAction => {
+  return {
+    type: AppActionType.MAP_API_RESPONSE,
+    payload: {[pageToken]: response},
+  };
+};
