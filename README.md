@@ -57,6 +57,14 @@ Run `npm run build` to build the project for production. The build artifacts wil
 
 This project was created with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
+## Screenshots
+
+**Video data table page**
+![VideoTablePage](screenshots/video-data-table-page.png "Video Data Table Page")
+
+**Video details page displaying video after clicking on the second row of the data table**
+![VideoDetailsPage](screenshots/video-details-page.png "Video Details Page")
+
 ## TODOs
 Additional work can be done on the project beyond its original requirements to make it more useful. This includes:
 
