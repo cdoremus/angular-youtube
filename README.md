@@ -1,6 +1,6 @@
 # Angular YouTube
 
-The focus of this application is the display of information from the [Angular channel on YouTube](https://www.youtube.com/user/angularjs) using the [Angular UI framework](https://angular.io) and [Angular Material](https://material.angular.io) components.
+The focus of this application is the display of information from the [Angular channel on YouTube](https://www.youtube.com/user/angularjs) using the [Angular UI framework](https://angular.io) and [Angular Material](https://material.angular.io) components. Application state management is handled by [NgRedux](https://github.com/angular-redux/store).
 
 ## Project Structure
 
@@ -19,6 +19,10 @@ The application uses the following Angular components and services:
 - `ErrorHandlerService` - extends the Angular `ErrorHandler` class to capture application errors and provide logging and a UI alert containing a non-technical message for the user if an error occurs.
 
 - `AppRoutingModule` - defines and sets up application routing to the `VideoTableComponent` as the app's default path.
+
+- `VideoDetailsComponent` - used to display an individual video and its details in a separate page when a row in the video table is clicked. The video is displayed in an IFRAME to allow the user to play the video published on the YouTube site.
+
+- `NgRedux` - a third party implementation of the [Redux](https://redux.js.org/) architectural pattern used to manage application state. The redux store is configured in `AppModule` to hold state defined in the `AppState` interface in `redux/root.ts`. The same file holds the reducer implementation (called `rootReducer`). All actions and action creators are located in the `redux/actions.ts` file.  `AppState` holds the current `Video` object to be displayed on the video details page and a cache of API response objects keyed by pageToken used to prevent duplicate http requests for video table data. Redux action and action creators are defined as TypeScript interfaces to promote type safety. `NgRedux` is also configured to run the Redux Dev Tools extensions for Chrome and Firefox when the application is in development mode to aid debugging.
 
 ## Project setup
 
@@ -55,10 +59,6 @@ This project was created with [Angular CLI](https://github.com/angular/angular-c
 
 ## TODOs
 Additional work can be done on the project beyond its original requirements to make it more useful. This includes:
-
-- Allow the user to click on a data table row to display the video content on a separate page so the video can be viewed and the complete description read. This functionality would be encapsulated in a new component and application routing modified to route to this component based on a route parameter containing the value of the `Video.videoId` field.
-
-- Cache the content of each paginated page's data. A start on this functionality has been done in `PagedVideoDataCacheService`. Each page's cache data would include a timestamp to facilitate cache expiration. This would save on YouTube API usage costs or limits.
 
 - Move the YouTube Data API key into an environmental variable set at the command line.
 
