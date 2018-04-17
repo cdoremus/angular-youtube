@@ -68,6 +68,10 @@ This project was created with [Angular CLI](https://github.com/angular/angular-c
 ## TODOs
 Additional work can be done on the project beyond its original requirements to make it more useful. This includes:
 
+- If the Home link is clicked on when the user is on a details page, the user should be navigated back to the page containing the row that they clicked on to get to the details page.
+
+- Implement a feature for filtering data table rows by video title
+
 - Move the YouTube Data API key into an environmental variable set at the command line.
 
 - Implement a logging service that connects with a server-side alerting service like Sentry.
