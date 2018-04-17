@@ -3,12 +3,16 @@ import { AppComponent } from './app.component';
 import { By } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MaterialModule } from './shared/material.module';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         MaterialModule,
+        RouterTestingModule.withRoutes([
+          { path: '', component: AppComponent },
+        ]),
       ],
       declarations: [
         AppComponent

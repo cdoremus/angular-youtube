@@ -5,6 +5,10 @@ enum NavigationDirection {
   PREVIOUS = 'previous'
 }
 
+/**
+ * This is the page object class for the
+ * home page holding the data table.
+ */
 export class AppPage {
   navigateTo() {
     return browser.get('/');
@@ -34,4 +38,10 @@ export class AppPage {
     return this.getNavigationButton(NavigationDirection.PREVIOUS);
   }
 
+  getFirstRow() {
+    return this.getTableRows().getWebElements()
+      .then(rows => {
+        return rows[0];
+      });
+  }
 }

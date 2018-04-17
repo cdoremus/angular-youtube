@@ -6,7 +6,6 @@ import { YouTubeApiResponse } from './model';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { getApiResponse, MockVideoTableDataSource } from '../../../test/testHelpers';
 import { VideoTableDataSource } from './video-table.datasource';
-import { PagedVideoDataCacheService } from './paged-videodata-cache.service';
 
 describe('VideoTableService', () => {
 
@@ -17,7 +16,6 @@ describe('VideoTableService', () => {
         HttpClientTestingModule
       ],
       providers: [
-        PagedVideoDataCacheService,
         VideoTableService
       ]
     });

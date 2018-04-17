@@ -38,6 +38,12 @@
   }
 }
 
+.mat-row {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .spinner-container {
   display: flex;
   justify-content: center;

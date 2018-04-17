@@ -10,8 +10,11 @@ import { YouTubeApiResponse, Video } from './model';
 import { VideoTableDataSource, PaginationDirection } from './video-table.datasource';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
-import { getApiResponse, MockVideoTableDataSource } from '../../../test/testHelpers';
+import { getApiResponse, MockVideoTableDataSource, MockModule, MockComponent } from '../../../test/testHelpers';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NgRedux } from '@angular-redux/store';
+import { AppState } from '../redux/root';
 
 describe('VideoTableComponent', () => {
   let component: VideoTableComponent;
@@ -21,11 +24,16 @@ describe('VideoTableComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MaterialModule,
+        MockModule,
+        RouterTestingModule.withRoutes([
+          { path: '', component: MockComponent },
+        ]),
       ],
       declarations: [ VideoTableComponent ],
       providers: [
         HttpClient,
         HttpHandler,
+        NgRedux,
         { provide: VideoTableDataSource, useValue: new MockVideoTableDataSource() }
       ]
     })
@@ -60,10 +68,10 @@ describe('VideoTableComponent', () => {
   });
 
   it('should call dataSource.fetchVideos when fetchVideos is invoked', () => {
-    const dataSource = new VideoTableDataSource(null);
+    const dataSource = new VideoTableDataSource(null, {} as NgRedux<AppState>);
     const intl = new MatPaginatorIntl();
     const paginator = new MatPaginator(intl, null);
-    const tableComponent = new VideoTableComponent(dataSource);
+    const tableComponent = new VideoTableComponent(dataSource, null, null);
     tableComponent.paginator = paginator;
     spyOn(dataSource, 'fetchVideoData');
 

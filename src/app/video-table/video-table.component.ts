@@ -6,6 +6,10 @@ import { tap } from 'rxjs/operators';
 
 import { VideoTableDataSource, PaginationDirection } from './video-table.datasource';
 import { CollectionViewer } from '@angular/cdk/collections';
+import { Router } from '@angular/router';
+import { NgRedux } from '@angular-redux/store';
+import { AppState } from '../redux/root';
+import { setCurrentVideoActionCreator } from '../redux/actions';
 
 /**
  * Component that contains the Angular Material
@@ -33,7 +37,10 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
   // holds a reference to the paginator used by the data table
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(public dataSource: VideoTableDataSource) {}
+  constructor(
+    public dataSource: VideoTableDataSource,
+    private router: Router,
+    private redux: NgRedux<AppState>) {}
 
   /**
    * Angular lifecycle method used here to fetch
@@ -56,7 +63,6 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.pageEventSubscription) {
       this.pageEventSubscription.unsubscribe();
     }
-    this.dataSource.disconnect({} as CollectionViewer);
   }
 
   /**
@@ -92,4 +98,9 @@ export class VideoTableComponent implements OnInit, OnDestroy, AfterViewInit {
     this.pageIndex = index;
   }
 
+  navigateToDetails(video: Video) {
+    console.log('Navigating to details with video: ', video);
+    this.redux.dispatch(setCurrentVideoActionCreator(video));
+    this.router.navigate(['/', video.videoId]);
+  }
 }
